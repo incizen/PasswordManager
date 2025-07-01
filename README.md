@@ -5,8 +5,8 @@ This project is a secure password manager that was built using django. Its a use
 
 1. Clone the repo:
    ```
-   git clone https://github.com/your-username/your-repo.git
-   cd your-repo/backend
+   https://github.com/incizen/PasswordManager.git
+   cd PasswordManager/backend
    ```
 
 2. Installing dependencies:
