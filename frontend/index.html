@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section>
+  <h1>Your Saved Passwords</h1>
+
+  <div class="password-table-container">
+    <table class="password-table">
+      <thead>
+        <tr>
+          <th>Logo</th>
+          <th>Site Name</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for password in passwords %}
+        <tr>
+          <td>
+            {% if password.logo %}
+              <img src="{{ password.logo }}" alt="{{ password.name }} logo" width="40" height="40" />
+            {% else %}
+              <img src="{% static 'default-logo.png' %}" alt="Default logo" width="40" height="40" />
+            {% endif %}
+          </td>
+          <td>{{ password.name }}</td>
+          <td>
+            <input type="email" readonly value="{{ password.email }}" />
+            <button class="copy-btn" data-copy="{{ forloop.counter0 }}-email" title="Copy email">
+              <i class="fas fa-copy"></i>
+            </button>
+          </td>
+          <td>
+            <input type="password" readonly value="{{ password.password }}" />
+            <button class="copy-btn" data-copy="{{ forloop.counter0 }}-password" title="Copy password">
+              <i class="fas fa-copy"></i>
+            </button>
+          </td>
+          <td>
+            <form action="." method="POST" style="display:inline;">
+              {% csrf_token %}
+              <input type="hidden" name="password-id" value="{{ password.id }}" />
+              <button type="submit" name="delete" class="delete-btn" title="Delete password">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" style="text-align:center; padding: 20px; color: var(--text-hover-color);">
+            No saved passwords yet. Add one below!
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <button onclick="displayModal('add-password-modal')" class="btn-add-password">
+    Add New Password
+  </button>
+
+  <div class="modals-wrapper">
+
+    <div id="add-password-modal" class="modal">
+      <span id="close-modal">&times;</span>
+      <h2>Add New Password</h2>
+      <form action="." method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Site Name" required />
+        <input type="url" name="logo" placeholder="Logo URL (optional)" />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="text" name="password" placeholder="Password" required />
+        <button type="submit" name="add">Save</button>
+      </form>
+    </div>
+
+
+  </div>
+</section>
+{% endblock %}
