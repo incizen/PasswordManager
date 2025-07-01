@@ -1,5 +1,5 @@
 ## Introduction 
-This project is a secure password manager is a web aplication that was built using django. Its a user friendly, password manager that allows users to store and retrieve their credentials for different websites, while being secure with data encryption and user authentication. 
+This project is a secure password manager that was built using django. Its a user friendly web application that allows users to store and retrieve their credentials for different websites, while being secure with data encryption and user authentication. 
 
 ## How to run 
 
