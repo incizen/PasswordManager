@@ -11,17 +11,15 @@ if (modalWrapper){
         close.addEventListener("click", () =>{
             modalWrapper.style.display = "none";
             modal.style.display = "none";
-        //I added this later, didn't cover it on the tutorial
+
         document.querySelector("header").style.display = "unset";
         })
 
-        //I added this later, didn't cover it on the tutorial
         document.querySelector("header").style.display = "none";
     }
 }
 
 
-//copy to clipboard
 const copies = document.querySelectorAll(".copy");
 copies.forEach(copy =>{
     copy.onclick = () =>{
@@ -31,8 +29,6 @@ copies.forEach(copy =>{
     }
 })
 
-//I added this later, didn't cover it on the tutorial
-//Display the actions of the password card for mobile devices
 const actions = document.querySelectorAll(".actions");
 if (actions){
     actions.forEach(action =>{
